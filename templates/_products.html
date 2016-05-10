@@ -1,0 +1,43 @@
+<!-- Page Header -->
+<h3 id="{{item.id}}">{{ item.title }} <small>({{ item.products|length }} products)</small></h3>
+<hr />
+<!-- Projects Row -->
+
+{% for row in item.products|batch(3) %}
+    <div class="row">
+        {% for prod in row %}
+            <div class="col-md-4 portfolio-item">
+                <div class="well">
+                    <h4> {{ prod.label }}</h4>
+                    Distributor Code: {{ prod.distributor_code }}
+                    <br />
+                    Ean: {{ prod.ean }}
+                    <br />
+                    IPC : {{ prod.ipc }}
+                    <br />
+                    Price : {{ prod.price }}
+                    <br />
+                    Position : {{ prod.position }}
+                    <br />
+                    Suppliers:
+                    <br />
+                    <ul>
+                        {% for sel in prod.suppliers %}
+                            <li>{{ sel.name }} / Price: {{sel.price}}</li>
+                        {% endfor %}
+                    </ul>
+                    Sellers:
+                    <br />
+                    <ul>
+                        {% for sel in prod.sellers %}
+                            <li>{{ sel.name }} / Price: {{sel.price}}</li>
+                        {% endfor %}
+                    </ul>
+                    {% if prod.bc_more_exp %}
+                    <span class="alert-danger">This product price is more expensive than seller: {{prod.best_seller}} with price: {{prod.best_seller_price}}</span>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endfor %}

@@ -1,0 +1,157 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <!-- Page Header -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header"><img src="{{ logo_url }}" /> Ranking
+                <small>{{ current_date }}</small>
+            </h1>
+        </div>
+    </div>
+
+    <h3>SUMMARY</h3>
+    <hr />
+    <!-- Projects Row -->
+    <div class="row">
+        <div class="col-md-4 portfolio-item">
+            <div class="well text-center">
+                <h4> ALL PRODUCTS</h4>
+                Position 1: {{ all_prod_pos1 }} %
+                <br />
+                Position 2: {{ all_prod_pos2 }} %
+                <br />
+                Position 3: {{ all_prod_pos3 }} %
+                <br />
+                <a href="#all_prods">All Results</a>
+            </div>
+        </div>
+        <div class="col-md-4 portfolio-item">
+            <div class="well text-center">
+                <h4> PREMIUM BRANDS</h4>
+                Position 1: {{ pre_brand_pos1 }} %
+                <br />
+                Position 2: {{ pre_brand_pos2 }} %
+                <br />
+                Position 3: {{ pre_brand_pos3 }} %
+                <br />
+                <a href="#pre_prods">All Results</a>
+            </div>
+        </div>
+        <div class="col-md-4 portfolio-item">
+            <div class="well text-center">
+                <h4> BUDGET BRANDS</h4>
+                Position 1: {{ bud_brand_pos1 }} %
+                <br />
+                Position 2: {{ bud_brand_pos2 }} %
+                <br />
+                Position 3: {{ bud_brand_pos3 }} %
+                <br />
+                <a href="#bud_prods">All Results</a>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+
+    <!-- Projects Row -->
+    <div class="row">
+        <div class="col-md-4 portfolio-item">
+            <div class="well text-center">
+                <h4>Sellers B2C</h4>
+                <a href="#b2c_less_prods">
+                    {{ b2c_less }} of {{ total }} products less expensive
+                </a>
+                <br />
+                <a href="#b2c_more_prods">
+                    {{ b2c_more }} of {{ total }} products more expensive
+                </a>
+                <br />
+                <a href="#b2c_matching_prods">
+                    {{ b2c_matching }} of {{ total }} products matching
+                </a>
+                <br />
+            </div>
+        </div>
+        <div class="col-md-4 portfolio-item">
+            <div class="well text-center">
+                <h4>Seller B2C PREMIUM BRAND</h4>
+                <a href="#b2c_pre_less_prods">
+                    {{ b2c_pre_less }} of {{ total }} products less expensive
+                </a>
+                <br />
+                <a href="#b2c_pre_more_prods">
+                    {{ b2c_pre_more }} of {{ total }} products more expensive
+                </a>
+                <br />
+                <a href="#b2c_pre_matching_prods">
+                    {{ b2c_pre_matching }} of {{ total }} products matching
+                </a>
+                <br />
+            </div>
+        </div>
+        <div class="col-md-4 portfolio-item">
+            <div class="well text-center">
+                <h4>Seller B2C BUDGET BRANDS</h4>
+                <a href="#b2c_bud_less_prods">
+                    {{ b2c_bud_less }} of {{ total }} products less expensive
+                </a>
+                <br />
+                <a href="#b2c_bud_more_prods">
+                    {{ b2c_bud_more }} of {{ total }} products more expensive
+                </a>
+                <br />
+                <a href="#b2c_bud_matching_prods">
+                    {{ b2c_bud_matching }} of {{ total }} products matching
+                </a>
+                <br />
+            </div>
+        </div>
+    </div>
+
+    <h3>PREMIUM BRANDS</h3>
+    <hr />
+    <!-- Projects Row -->
+    <div class="row">
+        {% for brand in pre_brands %}
+            <div class="col-md-4 portfolio-item">
+                <div class="well text-center">
+                    <h4> {{ brand.name }}</h4>
+                    Position 1: {{ brand.position1 }} %
+                    <br />
+                    Position 2: {{ brand.position2 }} %
+                    <br />
+                    Position 3: {{ brand.position3 }} %
+                    <br />
+                    <a href="#{{brand.name}}">All Results</a>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+    <!-- /.row -->
+
+    <h3>BUDGET BRANDS</h3>
+    <hr />
+    <!-- Projects Row -->
+    <div class="row">
+        {% for brand in bud_brands %}
+            <div class="col-md-4 portfolio-item">
+                <div class="well text-center">
+                    <h4> {{ brand.name }}</h4>
+                    Position 1: {{ brand.position1 }} %
+                    <br />
+                    Position 2: {{ brand.position2 }} %
+                    <br />
+                    Position 3: {{ brand.position3 }} %
+                    <br />
+                    <a href="#{{brand.name}}">All Results</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    {% for item in results %}
+        {% include "_products.html" %}
+    {% endfor %}
+
+{% endblock %}
